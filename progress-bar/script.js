@@ -21,5 +21,3 @@ window.addEventListener("scroll", () => {
     // apply width to progress bar
     bar.style.width = `${distance}%`;
 });
-
-console.log();
