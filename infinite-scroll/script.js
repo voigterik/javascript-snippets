@@ -1,11 +1,12 @@
-// API
 import { api } from "./config.js";
+
+// API
 const count = 10;
-// const apiKey = "HXLi1Js4Tqh-7XZD-JM1Zyz1nTxZtwZWAe4T8W4QhIs";
 const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${api.key}&count=${count}`;
 
 let images = [];
 
+// variables to load more images
 let imagesLoaded = 0;
 let totalImages = 10;
 let readyToLoad = false;
@@ -14,6 +15,7 @@ let readyToLoad = false;
 const container = document.querySelector(".js-container");
 const browserWindowHeight = window.innerHeight;
 
+// load more images
 function loadImages() {
     imagesLoaded++;
     if(imagesLoaded === totalImages) readyToLoad = true;
