@@ -1,7 +1,8 @@
 // API
+import { api } from "./config.js";
 const count = 10;
-const apiKey = "HXLi1Js4Tqh-7XZD-JM1Zyz1nTxZtwZWAe4T8W4QhIs";
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${count}`;
+// const apiKey = "HXLi1Js4Tqh-7XZD-JM1Zyz1nTxZtwZWAe4T8W4QhIs";
+const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${api.key}&count=${count}`;
 
 let images = [];
 
@@ -41,6 +42,6 @@ getData();
 
 window.addEventListener("scroll", () => {
     if(browserWindowHeight + window.scrollY >= document.body.offsetHeight && readyToLoad) {
-        // getData();
+        getData();
     }
 });
