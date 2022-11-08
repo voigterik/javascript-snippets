@@ -8,7 +8,7 @@ let images = [];
 
 // variables to load more images
 let imagesLoaded = 0;
-let totalImages = 10;
+let totalImages = 0;
 let readyToLoad = false;
 
 // DOM elements
@@ -36,13 +36,13 @@ async function getData() {
             console.log("Something went wrong " + data.status);
         }
         const images = await data.json();
-        console.log(images);
+        totalImages = images.length;
         images.map(item => {
             const image = document.createElement("img");
             setAttributes(image, {"src": item.urls.regular, "alt": item.description});
+            loadImages();
             container.appendChild(image);
         });
-        
     } catch(error) {
         console.log("Error in try/catch: " + error);
     } 
