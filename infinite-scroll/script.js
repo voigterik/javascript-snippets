@@ -21,6 +21,13 @@ function loadImages() {
     if(imagesLoaded === totalImages) readyToLoad = true;
 }
 
+// set attributes for images
+function setAttributes(element, attributes) {
+    for(const key in attributes) {
+        element.setAttribute(key, attributes[key])
+    } 
+}
+
 // get data from API
 async function getData() {
     try {
@@ -29,10 +36,10 @@ async function getData() {
             console.log("Something went wrong " + data.status);
         }
         const images = await data.json();
+        console.log(images);
         images.map(item => {
             const image = document.createElement("img");
-            image.setAttribute("src", item.urls.regular);
-            image.addEventListener("load", loadImages);
+            setAttributes(image, {"src": item.urls.regular, "alt": item.description});
             container.appendChild(image);
         });
         
