@@ -15,7 +15,7 @@ let readyToLoad = false;
 const container = document.querySelector(".js-container");
 const browserWindowHeight = window.innerHeight;
 
-// load more images
+// load more images when all previous are loaded
 function loadImages() {
     imagesLoaded++;
     if(imagesLoaded === totalImages) readyToLoad = true;
@@ -28,6 +28,16 @@ function setAttributes(element, attributes) {
     } 
 }
 
+// generate images and append to DOM element
+function showImages(items, parent) {
+    items.map(item => {
+        const image = document.createElement("img");
+        setAttributes(image, {"src": item.urls.regular, "alt": item.description});
+        image.addEventListener("load", loadImages);
+        parent.appendChild(image);
+    });
+}
+
 // get data from API
 async function getData() {
     try {
@@ -37,12 +47,7 @@ async function getData() {
         }
         const images = await data.json();
         totalImages = images.length;
-        images.map(item => {
-            const image = document.createElement("img");
-            setAttributes(image, {"src": item.urls.regular, "alt": item.description});
-            loadImages();
-            container.appendChild(image);
-        });
+        showImages(images, container);
     } catch(error) {
         console.log("Error in try/catch: " + error);
     } 
